@@ -74,11 +74,7 @@ public class MainActivity extends AppCompatActivity {
     Button captureImage;
     TextView t3;
     TextView colorcodetext;
-    SeekBar sk;
-    TextView aaaaaaaaaaaaaaaa;
-    RecyclerView mRecyclerView;
-    ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
-    Preview.Builder previewBuilder_wf = new Preview.Builder();
+    TextView imgwidthheight;
     Switch switch_if_af;
 
     @Override
@@ -94,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         mPreviewView = findViewById(R.id.camera_previewView);
         captureImage = findViewById(R.id.captureImg);
         switch_if_af = (Switch) findViewById(R.id.switch1);
+        imgwidthheight = findViewById(R.id.imgwidthheight);
 
         if (allPermissionsGranted()) {
             startCamera(); //start camera if permission has been granted by user
@@ -137,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
                 if (deltaTime >= intervalInMilliSeconds) {
                     //https://stackoverflow.com/questions/59613886/android-camerax-color-detection
                     @SuppressLint("UnsafeOptInUsageError") Image currentTimeImage = imageProxy.getImage();
+                    int this_width = currentTimeImage.getWidth();
+                    int this_height = currentTimeImage.getHeight();
+                    //imgwidthheight.setText("width"+String.valueOf(this_width)+"height"+String.valueOf(this_height));
                     //TODO: go with only buffer and not convert buffer 2 array
                     Image.Plane planes[] = currentTimeImage.getPlanes();
                     ByteBuffer yBuffer = planes[0].getBuffer(); // Y
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     yBuffer.get(nv21, 0, ySize);
                     vBuffer.get(nv21, ySize, vSize);
                     uBuffer.get(nv21, ySize + vSize, uSize);
-                    YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, currentTimeImage.getWidth(), currentTimeImage.getHeight(), null);
+                    YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, this_width, this_height, null);
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
                     yuvImage.compressToJpeg(new Rect(0, 0, yuvImage.getWidth(), yuvImage.getHeight()), 50, out);
                     byte[] imageBytes = out.toByteArray();
@@ -199,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onError(@NonNull ImageCaptureException error) {
                     error.printStackTrace();
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        Toast.makeText(MainActivity.this, "Image Saved ERROR"+error.toString(), Toast.LENGTH_SHORT).show();
+                    });
                 }
             });
         });
@@ -256,13 +259,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static String getBatchDirectoryName() {
-
         String app_folder_path = "";
         app_folder_path = Environment.getExternalStorageDirectory().toString() + "/images";
         File dir = new File(app_folder_path);
         if (!dir.exists() && !dir.mkdirs()) {
 
         }
+        Log.d("app_folder_path",app_folder_path);
         return app_folder_path;
     }
 }

@@ -7,8 +7,8 @@ android {
     buildToolsVersion "30.0.2"
     defaultConfig {
         applicationId "me.andythebreaker.camerax_color_detect"
-        minSdkVersion 30
-        targetSdkVersion 30
+        minSdkVersion 26
+        targetSdkVersion 29
         versionCode 2
         versionName "2.0"
 
