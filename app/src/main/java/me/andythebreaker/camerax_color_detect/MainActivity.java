@@ -38,6 +38,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     TextView colorcodetext;
     TextView imgwidthheight;
     Switch switch_if_af;
+    ImageView imageViewcan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +93,14 @@ public class MainActivity extends AppCompatActivity {
         captureImage = findViewById(R.id.captureImg);
         switch_if_af = (Switch) findViewById(R.id.switch1);
         imgwidthheight = findViewById(R.id.imgwidthheight);
-
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        imgwidthheight.setText("height"+String.valueOf(height)+"width"+String.valueOf(width));
+        imageViewcan=findViewById(R.id.imageViewcan);
+        imageViewcan.setBackgroundColor(Color.TRANSPARENT);
+        
         if (allPermissionsGranted()) {
             startCamera(); //start camera if permission has been granted by user
         } else {
@@ -198,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onError(@NonNull ImageCaptureException error) {
+                    //TODO: https://blog.csdn.net/djzhao627/article/details/111696044
                     error.printStackTrace();
                     new Handler(Looper.getMainLooper()).post(() -> {
                         Toast.makeText(MainActivity.this, "Image Saved ERROR"+error.toString(), Toast.LENGTH_SHORT).show();
