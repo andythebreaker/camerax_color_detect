@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">camerax_color_detect</string>
+    <string name="capture">capture</string>
+    <string name="preview_area">preview_area</string>
+</resources>
