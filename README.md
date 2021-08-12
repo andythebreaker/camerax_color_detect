@@ -1,3 +1,11 @@
+---
+title: camerax_color_detect
+lang: zh-tw
+tags: github
+---
+
+---
+
 use compile sdk version = 30
 
 	min sdk v. = 26
