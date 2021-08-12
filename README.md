@@ -6,10 +6,28 @@ tags: github
 
 [![hackmd-github-sync-badge](https://hackmd.io/ECZWdPoMQI2U9fR0du-ckA/badge)](https://hackmd.io/ECZWdPoMQI2U9fR0du-ckA)
 
+# camerax_color_detect
 
----
+## introduction
 
-use compile sdk version = 30
+
+### Branch relevance
+
+This branch is based on the following branch:
+
+[camPdfHttpAndriod](https://github.com/andythebreaker/camPdfHttpAndriod)
+
+## Software function
+
+## In development
+
+## Known defects
+
+## environment
+
+use 
+
+    compile sdk version = 30
 
 	min sdk v. = 26
 	
@@ -17,6 +35,8 @@ use compile sdk version = 30
 
 to avoid problem @ saving img.
 
-error s.t.:
+##### error s.t.:
 
 `EPERM`
+
+![](https://i.imgur.com/bC7rhxW.jpg)
