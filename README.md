@@ -4,6 +4,9 @@ lang: zh-tw
 tags: github
 ---
 
+[![hackmd-github-sync-badge](https://hackmd.io/ECZWdPoMQI2U9fR0du-ckA/badge)](https://hackmd.io/ECZWdPoMQI2U9fR0du-ckA)
+
+
 ---
 
 use compile sdk version = 30
