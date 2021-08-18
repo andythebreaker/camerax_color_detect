@@ -1,0 +1,21 @@
+a. defect
+
+1. ink color hex/print diff. (data also diff.)
+2. res. 4 color bar not in same place
+3. object too small (phy.), NON-usr-friendly
+4. paper (color ref.) reflect, more when ink increase
+
+to fix a. ref. to peaper, use 'any' way to recog. color "bar"
+\t edge dect. (?)
+\t or peak vlaue method (?)
+
+b. realtime prob.
+
+1. no need realrime
+2. cap. 1 frfam and send back to srv. , use py. to analysis
+3. do avg. instead of one pixel
+
+to fix b. use stream texh. (?)
+\t use parl. instead of for loop (?)
+
+come up with a idea -> ref. to this.readme.md
