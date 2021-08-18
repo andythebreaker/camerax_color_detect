@@ -284,6 +284,50 @@
                     android:background="#DDB98B"
                     android:textColor="@color/black" />
             </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:orientation="vertical"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/colordec1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:background="#DDB98B"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/colordec2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:background="#DDB98B"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/colordec3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:background="#DDB98B"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/colordec4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#DDB98B"
+                    android:textColor="@color/black" />
+            </TableRow>
+
         </TableLayout>
     </LinearLayout>
 
