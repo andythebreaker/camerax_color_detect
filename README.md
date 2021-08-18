@@ -8,6 +8,8 @@ tags: github
 
 # camerax_color_detect
 
+[demo video](https://youtu.be/2Amm6SG2TCs)
+
 ## introduction
 
 Use the new version of the Android camera api to read the camera image, and use its image analysis function to obtain the data of each frame
