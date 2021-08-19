@@ -32,7 +32,16 @@ Only sample the central single point of the frame line visualization
 
 ### Color comparison
 
-...
+![](https://i.imgur.com/fQn4WZJ.png)
+
+
+![](https://i.imgur.com/lEy6VNo.png)
+
+
+euclidean distance base clustering strategy is employed to regcognize color bars 
+(REF: 
+[Real-time resistor color code recognition using image processing in mobile devce](https://ieeexplore.ieee.org/document/8710533) 
+)
 
 ### UI alignment border
 
@@ -59,6 +68,32 @@ The following packages are currently found:
 There are still some solutions to be tested in the starred area of my github, and it is expected to continue to try
 
 All in all, the new version of the camera api does not have very complete streaming support. I expect to use the current image analysis method to package the images and throw them out in a streaming way; but need to understand the streaming protocol better
+
+## Results and discussion
+
+### a. defect
+
+    1. ink color hex/print diff. (data also diff.)
+    2. res. 4 color bar not in same place
+    3. object too small (phy.), NON-usr-friendly
+    4. paper (color ref.) reflect, more when ink increase
+
+to fix a. ref. to peaper
+
+    - use 'any' way to recog. color "bar"
+    - edge dect. (?)
+    - or peak vlaue method (?)
+
+### b. realtime prob.
+
+    1. no need realrime
+    2. cap. 1 frfam and send back to srv. , use py. to analysis
+    3. do avg. instead of one pixel
+
+to fix b. 
+
+    - use stream tech. (?)
+    - use parl. instead of for loop (?)
 
 ## Known defects
 
