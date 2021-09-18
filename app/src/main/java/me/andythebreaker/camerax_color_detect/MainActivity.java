@@ -48,6 +48,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -75,13 +76,16 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import me.andythebreaker.camerax_color_detect.ImageUtils;
+import me.andythebreaker.camerax_color_detect.RtmpClient;
+
 public class MainActivity extends AppCompatActivity {
 
 
     public long lastTimeStamp;
     private Executor executor = Executors.newSingleThreadExecutor();
     private int REQUEST_CODE_PERMISSIONS = 1001;
-    private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
+    private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.RECORD_AUDIO","android.permission.INTERNET","android.permission.ACCESS_WIFI_STATE","android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE"};
     public int main_height;
     public int main_width;
     PreviewView mPreviewView;
@@ -112,7 +116,29 @@ public class MainActivity extends AppCompatActivity {
     TextView colordec2;
     TextView colordec3;
     TextView colordec4;
+    Button rtmpSVswitch_obj;
+    private RtmpClient rtmpClient;
+    EditText rtmpurl;
 
+    public void rtmpSVswitch(View view) {
+        CharSequence text = rtmpSVswitch_obj.getText();
+        if ("start".equals(text)) {
+            toast_is_good_to_eat("start");
+            rtmpSVswitch_obj.setText("stop");
+            rtmpClient = new RtmpClient(/*this*/);
+            //初始化摄像头， 同时 创建编码器
+            int heighteven = (main_height % 2 == 0) ?main_height:main_height-1;
+            rtmpClient.initVideo(/*textureView,*/ main_width, heighteven, 10, 2500);
+            rtmpClient.initAudio(44100, 2);
+            rtmpClient.startLive(rtmpurl.getText().toString());
+        } else if ("stop".equals(text)) {
+            toast_is_good_to_eat("stop");
+            rtmpSVswitch_obj.setText("start");
+            rtmpClient.stopLive();
+        } else {
+            toast_is_good_to_eat("error");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //init
+        rtmpurl=(EditText)findViewById(R.id.editTextTextPersonName2) ;
+        rtmpSVswitch_obj=(Button)findViewById(R.id.startSV) ;
         colorcodetext = (TextView) findViewById(R.id.colorcodetext);
         colorcodetext.setText("null");
         t3 = (TextView) findViewById(R.id.t3);
@@ -219,6 +247,14 @@ public class MainActivity extends AppCompatActivity {
                 long currentTimeStamp = System.currentTimeMillis();
                 long intervalInMilliSeconds = TimeUnit.MILLISECONDS.toMillis(100);
                 long deltaTime = currentTimeStamp - lastTimeStamp;
+
+                // 开启直播并且已经成功连接服务器才获取i420数据
+                if ("stop".equals(rtmpSVswitch_obj.getText())&&rtmpClient.isConnectd()) {
+                    byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());
+                    Log.e("andythebreaker", "byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());");
+                    rtmpClient.sendVideo(bytes);
+                }
+
                 if (deltaTime >= intervalInMilliSeconds) {
                     //https://stackoverflow.com/questions/59613886/android-camerax-color-detection
                     @SuppressLint("UnsafeOptInUsageError") Image currentTimeImage = imageProxy.getImage();
