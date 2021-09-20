@@ -6,6 +6,10 @@
 #include "VideoChannel.h"
 #include "AudioChannel.h"
 
+#include <android/log.h>
+
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-lib", __VA_ARGS__))
+
 VideoChannel *videoChannel = nullptr;
 AudioChannel *audioChannel = nullptr;
 JavaVM *javaVM = 0;
@@ -149,13 +153,20 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendVideo(JNIEnv *env, jobject thiz,
                                                                  jbyteArray buffer) {
+
+    LOGI("Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendVideo");
+
     jbyte *data = env->GetByteArrayElements(buffer, 0);
+    LOGI("jbyte *data = env->GetByteArrayElements(buffer, 0);");
     pthread_mutex_lock(&mutex);
+    LOGI("pthread_mutex_lock(&mutex);");
     //编码与推流
     videoChannel->encode(reinterpret_cast<uint8_t *>(data));
+    LOGI("videoChannel->encode(reinterpret_cast<uint8_t *>(data));");
     pthread_mutex_unlock(&mutex);
-
+    LOGI("pthread_mutex_unlock(&mutex);");
     env->ReleaseByteArrayElements(buffer, data, 0);
+    LOGI("env->ReleaseByteArrayElements(buffer, data, 0);");
 }
 
 extern "C"

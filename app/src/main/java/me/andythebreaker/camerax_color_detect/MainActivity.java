@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     public long lastTimeStamp;
     private Executor executor = Executors.newSingleThreadExecutor();
     private int REQUEST_CODE_PERMISSIONS = 1001;
-    private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.RECORD_AUDIO","android.permission.INTERNET","android.permission.ACCESS_WIFI_STATE","android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE"};
+    private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.RECORD_AUDIO", "android.permission.INTERNET", "android.permission.ACCESS_WIFI_STATE", "android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"};
     public int main_height;
     public int main_width;
     PreviewView mPreviewView;
@@ -127,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
             rtmpSVswitch_obj.setText("stop");
             rtmpClient = new RtmpClient(/*this*/);
             //初始化摄像头， 同时 创建编码器
-            int heighteven = (main_height % 2 == 0) ?main_height:main_height-1;
-            rtmpClient.initVideo(/*textureView,*/ main_width, heighteven, 10, 2500);
+            //int heighteven = (main_height % 2 == 0) ? main_height : main_height + 1;
+            rtmpClient.initVideo(640, 480, 10, 2500);
             rtmpClient.initAudio(44100, 2);
             rtmpClient.startLive(rtmpurl.getText().toString());
         } else if ("stop".equals(text)) {
@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //init
-        rtmpurl=(EditText)findViewById(R.id.editTextTextPersonName2) ;
-        rtmpSVswitch_obj=(Button)findViewById(R.id.startSV) ;
+        rtmpurl = (EditText) findViewById(R.id.editTextTextPersonName2);
+        rtmpSVswitch_obj = (Button) findViewById(R.id.startSV);
         colorcodetext = (TextView) findViewById(R.id.colorcodetext);
         colorcodetext.setText("null");
         t3 = (TextView) findViewById(R.id.t3);
@@ -248,14 +248,19 @@ public class MainActivity extends AppCompatActivity {
                 long intervalInMilliSeconds = TimeUnit.MILLISECONDS.toMillis(100);
                 long deltaTime = currentTimeStamp - lastTimeStamp;
 
+                //TODO:why?only640*480?is old ver. the same 640*480???
+                /*@SuppressLint("UnsafeOptInUsageError") Image currentTimeImageTest = imageProxy.getImage();
+                Log.d("andythebreaker", "w" + Integer.toString(currentTimeImageTest.getWidth()) + "h" +
+                        Integer.toString(currentTimeImageTest.getHeight()));*/
+
                 // 开启直播并且已经成功连接服务器才获取i420数据
-                if ("stop".equals(rtmpSVswitch_obj.getText())&&rtmpClient.isConnectd()) {
+                if ("stop".equals(rtmpSVswitch_obj.getText()) && rtmpClient.isConnectd()) {
                     byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());
                     Log.e("andythebreaker", "byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());");
                     rtmpClient.sendVideo(bytes);
                 }
 
-                if (deltaTime >= intervalInMilliSeconds) {
+                /*if (deltaTime >= intervalInMilliSeconds) {
                     //https://stackoverflow.com/questions/59613886/android-camerax-color-detection
                     @SuppressLint("UnsafeOptInUsageError") Image currentTimeImage = imageProxy.getImage();
                     int this_width = currentTimeImage.getWidth();
@@ -283,14 +288,12 @@ public class MainActivity extends AppCompatActivity {
                     int bmp_width = private_fun_Image_toBitmap_Bitmap.getHeight();
                     float blockcell = bmp_width / 8;
                     float block_margen_top = (bmp_height - blockcell * 3) / 2;
-                    float leftRightMargenGuiResLine = blockcell * 6 * (1.15f/(1.15f+0.9f+1.15f));//copy
-                    float fullBodyGuiResLine = blockcell * 6 * (0.9f/(1.15f+0.9f+1.15f));//copy
-                    float margenBetweenGuiResLine=fullBodyGuiResLine/5;//copy
+                    float leftRightMargenGuiResLine = blockcell * 6 * (1.15f / (1.15f + 0.9f + 1.15f));//copy
+                    float fullBodyGuiResLine = blockcell * 6 * (0.9f / (1.15f + 0.9f + 1.15f));//copy
+                    float margenBetweenGuiResLine = fullBodyGuiResLine / 5;//copy
                     int pixel = private_fun_Image_toBitmap_Bitmap.getPixel((bmp_width / 2), (bmp_height / 2));
-                    /*int red = Color.red(pixel);
-                    int blue = Color.blue(pixel);
-                    int green = Color.green(pixel);*/
-                    colorcodetext.setText(/*String.format("#%02x%02x%02x", red, green, blue)*/ddb98b(rgbint(pixel)));
+
+                    colorcodetext.setText(ddb98b(rgbint(pixel)));
                     //important::getpixel::width/height相反
                     //TODO:整個分析都是靜巷的
                     Vector rgbintVector = new Vector();
@@ -318,19 +321,7 @@ public class MainActivity extends AppCompatActivity {
                     colortext10.setText(ddb98b((int[]) rgbintVector.get(9)));
                     colortext11.setText(ddb98b((int[]) rgbintVector.get(10)));
                     colortext12.setText(ddb98b((int[]) rgbintVector.get(11)));
-                    /*
-                    colortext1.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 1.5f)))));
-                    colortext2.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 2.5f)))));
-                    colortext3.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 3.5f)))));
-                    colortext4.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 4.5f)))));
-                    colortext5.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 5.5f)))));
-                    colortext6.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 6.5f)))));
-                    colortext7.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 1.5f)))));
-                    colortext8.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 2.5f)))));
-                    colortext9.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 3.5f)))));
-                    colortext10.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 4.5f)))));
-                    colortext11.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 5.5f)))));
-                    colortext12.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 6.5f)))));*/
+
                     textViewHexTextSetBackground(colortext1);
                     textViewHexTextSetBackground(colortext2);
                     textViewHexTextSetBackground(colortext3);
@@ -343,33 +334,28 @@ public class MainActivity extends AppCompatActivity {
                     textViewHexTextSetBackground(colortext10);
                     textViewHexTextSetBackground(colortext11);
                     textViewHexTextSetBackground(colortext12);
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*1))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*2))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*3))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*4))));
+                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 1))));
+                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 2))));
+                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 3))));
+                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 4))));
                     colorrec1.setText(ddb98b((int[]) rgbintVector.get(12)));
                     colorrec2.setText(ddb98b((int[]) rgbintVector.get(13)));
                     colorrec3.setText(ddb98b((int[]) rgbintVector.get(14)));
                     colorrec4.setText(ddb98b((int[]) rgbintVector.get(15)));
-                    /*
-                    colorrec1.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*1)))));
-                    colorrec2.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*2)))));
-                    colorrec3.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*3)))));
-                    colorrec4.setText(ddb98b(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*4)))));
-                    */
+
                     textViewHexTextSetBackground(colorrec1);
                     textViewHexTextSetBackground(colorrec2);
                     textViewHexTextSetBackground(colorrec3);
                     textViewHexTextSetBackground(colorrec4);
 
-                    colordec1.setText(enum12color(findColorSim(rgbintVector,12+0)));
-                    colordec2.setText(enum12color(findColorSim(rgbintVector,12+1)));
-                    colordec3.setText(enum12color(findColorSim(rgbintVector,12+2)));
-                    colordec4.setText(enum12color(findColorSim(rgbintVector,12+3)));
+                    colordec1.setText(enum12color(findColorSim(rgbintVector, 12 + 0)));
+                    colordec2.setText(enum12color(findColorSim(rgbintVector, 12 + 1)));
+                    colordec3.setText(enum12color(findColorSim(rgbintVector, 12 + 2)));
+                    colordec4.setText(enum12color(findColorSim(rgbintVector, 12 + 3)));
                     currentTimeImage.close();
                     lastTimeStamp = currentTimeStamp;
                 }
-                imageProxy.close();
+                */imageProxy.close();
             }
         });
 
@@ -405,9 +391,9 @@ public class MainActivity extends AppCompatActivity {
         canvas.drawRect(rect, p);*/
         float blockcell = cam_phy_width / 8;
         float block_margen_top = (cam_phy_height - blockcell * 3) / 2;
-        float leftRightMargenGuiResLine = blockcell * 6 * (1.15f/(1.15f+0.9f+1.15f));
-        float fullBodyGuiResLine = blockcell * 6 * (0.9f/(1.15f+0.9f+1.15f));
-        float margenBetweenGuiResLine=fullBodyGuiResLine/5;
+        float leftRightMargenGuiResLine = blockcell * 6 * (1.15f / (1.15f + 0.9f + 1.15f));
+        float fullBodyGuiResLine = blockcell * 6 * (0.9f / (1.15f + 0.9f + 1.15f));
+        float margenBetweenGuiResLine = fullBodyGuiResLine / 5;
         RectF color_cell1 = new RectF(blockcell * 1, block_margen_top + blockcell * 0, blockcell * 2, block_margen_top + blockcell * 1);
         RectF color_cell2 = new RectF(blockcell * 2, block_margen_top + blockcell * 0, blockcell * 3, block_margen_top + blockcell * 1);
         RectF color_cell3 = new RectF(blockcell * 3, block_margen_top + blockcell * 0, blockcell * 4, block_margen_top + blockcell * 1);
@@ -420,10 +406,10 @@ public class MainActivity extends AppCompatActivity {
         RectF color_cell10 = new RectF(blockcell * 4, block_margen_top + blockcell * 2, blockcell * 5, block_margen_top + blockcell * 3);
         RectF color_cell11 = new RectF(blockcell * 5, block_margen_top + blockcell * 2, blockcell * 6, block_margen_top + blockcell * 3);
         RectF color_cell12 = new RectF(blockcell * 6, block_margen_top + blockcell * 2, blockcell * 7, block_margen_top + blockcell * 3);
-        RectF guiResLine1 = new RectF(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*1-1, block_margen_top + blockcell * 1, blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine* 1+1, block_margen_top + blockcell * 2);
-        RectF guiResLine2 = new RectF(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*2-1, block_margen_top + blockcell * 1, blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine* 2+1, block_margen_top + blockcell * 2);
-        RectF guiResLine3 = new RectF(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*3-1, block_margen_top + blockcell * 1, blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine* 3+1, block_margen_top + blockcell * 2);
-        RectF guiResLine4 = new RectF(blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine*4-1, block_margen_top + blockcell * 1, blockcell+leftRightMargenGuiResLine+margenBetweenGuiResLine* 4+1, block_margen_top + blockcell * 2);
+        RectF guiResLine1 = new RectF(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 1 - 1, block_margen_top + blockcell * 1, blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 1 + 1, block_margen_top + blockcell * 2);
+        RectF guiResLine2 = new RectF(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 2 - 1, block_margen_top + blockcell * 1, blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 2 + 1, block_margen_top + blockcell * 2);
+        RectF guiResLine3 = new RectF(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 3 - 1, block_margen_top + blockcell * 1, blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 3 + 1, block_margen_top + blockcell * 2);
+        RectF guiResLine4 = new RectF(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 4 - 1, block_margen_top + blockcell * 1, blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 4 + 1, block_margen_top + blockcell * 2);
         canvas.drawRect(color_cell1, p);
         canvas.drawRect(color_cell2, p);
         canvas.drawRect(color_cell3, p);
@@ -567,41 +553,41 @@ public class MainActivity extends AppCompatActivity {
         tv_parm.setBackgroundColor(Color.parseColor(tv_parm.getText().toString()));
     }
 
-    public static double diff_rms(int[] targ,int[] ref){
-        return Math.sqrt(Math.pow(((double) (targ[0]-ref[0])),2)+Math.pow(((double) (targ[1]-ref[1])),2)+Math.pow(((double) (targ[2]-ref[2])),2));
+    public static double diff_rms(int[] targ, int[] ref) {
+        return Math.sqrt(Math.pow(((double) (targ[0] - ref[0])), 2) + Math.pow(((double) (targ[1] - ref[1])), 2) + Math.pow(((double) (targ[2] - ref[2])), 2));
     }
 
-    public static int doubleArrayFindMinIndex(double[] parm_double_ary){
+    public static int doubleArrayFindMinIndex(double[] parm_double_ary) {
         OptionalDouble min_num = Arrays.stream(parm_double_ary).min();
-        if(min_num.isPresent()){
-            for(int i = 0;i<parm_double_ary.length;i++){
-                if(parm_double_ary[i]==min_num.getAsDouble()){
-                    return i+1;
+        if (min_num.isPresent()) {
+            for (int i = 0; i < parm_double_ary.length; i++) {
+                if (parm_double_ary[i] == min_num.getAsDouble()) {
+                    return i + 1;
                 }
             }
             return 0;
-        }else{
+        } else {
             return -1;
         }
     }
 
     public static int findColorSim(Vector colorRefAndTargetIntArrayVector, int indexTarget) {
         //Log.d("math","findColorSim");
-        int[] targetColorRGB=((int[])colorRefAndTargetIntArrayVector.get(indexTarget));
+        int[] targetColorRGB = ((int[]) colorRefAndTargetIntArrayVector.get(indexTarget));
         //Log.d("math","int[] targetColorRGB=((int[])colorRefAndTargetIntArrayVector.get(indexTarget));");
         double[] rmsResult12 = new double[]{
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(0))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(1))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(2))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(3))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(4))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(5))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(6))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(7))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(8))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(9))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(10))),
-                diff_rms(targetColorRGB,((int[])colorRefAndTargetIntArrayVector.get(11)))
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(0))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(1))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(2))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(3))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(4))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(5))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(6))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(7))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(8))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(9))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(10))),
+                diff_rms(targetColorRGB, ((int[]) colorRefAndTargetIntArrayVector.get(11)))
         };
         //Log.d("math","        double[] rmsResult12 = new double[]{\n");
         int answer = doubleArrayFindMinIndex(rmsResult12);
@@ -609,8 +595,8 @@ public class MainActivity extends AppCompatActivity {
         return doubleArrayFindMinIndex(rmsResult12);
     }
 
-    public static String enum12color(int color12){
-        switch (color12){
+    public static String enum12color(int color12) {
+        switch (color12) {
             case -1:
                 return "math error (@ find min.)";
             case 0:
