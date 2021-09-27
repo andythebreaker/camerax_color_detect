@@ -16,22 +16,23 @@ public class ImageUtils {
 
     static ByteBuffer yuv420;
     static byte[] scaleBytes;
+    static final boolean log_andythebreaker_image_dont_go_out=false;
 
     public static byte[] getBytes(ImageProxy image, int rotationDegrees, int width, int height) {
-        Log.e("andythebreaker", "public static byte[] getBytes(ImageProxy image, int rotationDegrees, int width, int height) {");
+        if(log_andythebreaker_image_dont_go_out)Log.e("andythebreaker", "public static byte[] getBytes(ImageProxy image, int rotationDegrees, int width, int height) {");
         if (image.getFormat() != ImageFormat.YUV_420_888) {
             // https://developer.android.google.cn/training/camerax/analyze
             throw new IllegalStateException("根据文档，Camerax图像分析返回的就是YUV420!");
         }
         ImageProxy.PlaneProxy[] planes = image.getPlanes();
         // todo 避免内存抖动.
-            Log.d("andythebreaker",
+            if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker",
                     "image.getWidth()" +
                             Integer.toString(image.getWidth()) +
                             "image.getHeight()" +
                             Integer.toString(image.getHeight()));
         int size = image.getWidth() * image.getHeight() * 3 / 2;
-        Log.d("andythebreaker", "block1");
+        if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "block1");
         if (yuv420 == null || yuv420.capacity() < size) {
             yuv420 = ByteBuffer.allocate(size);
         }
@@ -54,7 +55,7 @@ public class ImageUtils {
         byte[] row = new byte[image.getWidth()];
         // 每行要排除的无效数据，但是需要注意：实际测试中 最后一行没有这个补位数据
         byte[] skipRow = new byte[rowStride - image.getWidth()];
-        Log.d("andythebreaker", "block2");
+        if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "block2");
         for (int i = 0; i < image.getHeight(); i++) {
             buffer.get(row);
             yuv420.put(row);
@@ -66,7 +67,7 @@ public class ImageUtils {
         /**
          * U V 数据
          */
-        Log.d("andythebreaker", "block3");
+        if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "block3");
         for (int i = 1; i < 3; i++) {
             plane = planes[i];
             pixelStride = plane.getPixelStride();
@@ -123,16 +124,16 @@ public class ImageUtils {
         int srcHeight = image.getHeight();
         byte[] result = yuv420.array();
         //注意旋转后 宽高变了
-        Log.d("andythebreaker", "block4");
+        if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "block4");
         if (rotationDegrees == 90 || rotationDegrees == 270) {
             //todo jni对result修改值，避免内存抖动
             rotation(result, image.getWidth(), image.getHeight(), rotationDegrees);
             srcWidth = image.getHeight();
             srcHeight = image.getWidth();
         }
-        Log.d("andythebreaker", "block5");
+        if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "block5");
         if (srcWidth != width || srcHeight != height) {
-            Log.d("andythebreaker",
+            if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker",
                     "srcWidth" +
                             Integer.toString(srcWidth) +
                             "width" +
@@ -141,20 +142,20 @@ public class ImageUtils {
                             Integer.toString(srcHeight) +
                             "height" +
                             Integer.toString(height));
-            Log.d("andythebreaker", "if (srcWidth != width || srcHeight != height) {");
+            if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "if (srcWidth != width || srcHeight != height) {");
             //todo jni对scaleBytes修改值，避免内存抖动
             int scaleSize = width * height * 3 / 2;
-            Log.d("andythebreaker", "int scaleSize = width * height * 3 / 2;");
+            if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "int scaleSize = width * height * 3 / 2;");
             if (scaleBytes == null || scaleBytes.length < scaleSize) {
-                Log.d("andythebreaker", "if (scaleBytes == null || scaleBytes.length < scaleSize) {");
+                if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "if (scaleBytes == null || scaleBytes.length < scaleSize) {");
                 scaleBytes = new byte[scaleSize];
-                Log.d("andythebreaker", "scaleBytes = new byte[scaleSize];");
+                if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "scaleBytes = new byte[scaleSize];");
             }
             scale(result, scaleBytes, srcWidth, srcHeight, width, height);
-            Log.d("andythebreaker", "scale(result, scaleBytes, srcWidth, srcHeight, width, height);");
+            if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "scale(result, scaleBytes, srcWidth, srcHeight, width, height);");
             return scaleBytes;
         }
-        Log.e("andythebreaker", "etBytes->return result;");
+        if(log_andythebreaker_image_dont_go_out)Log.e("andythebreaker", "etBytes->return result;");
         return result;
     }
 

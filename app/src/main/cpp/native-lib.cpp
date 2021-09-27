@@ -9,6 +9,7 @@
 #include <android/log.h>
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-lib", __VA_ARGS__))
+#define LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT 0
 
 VideoChannel *videoChannel = nullptr;
 AudioChannel *audioChannel = nullptr;
@@ -154,19 +155,19 @@ JNIEXPORT void JNICALL
 Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendVideo(JNIEnv *env, jobject thiz,
                                                                  jbyteArray buffer) {
 
-    LOGI("Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendVideo");
+    if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendVideo");
 
     jbyte *data = env->GetByteArrayElements(buffer, 0);
-    LOGI("jbyte *data = env->GetByteArrayElements(buffer, 0);");
+    if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("jbyte *data = env->GetByteArrayElements(buffer, 0);");
     pthread_mutex_lock(&mutex);
-    LOGI("pthread_mutex_lock(&mutex);");
+    if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("pthread_mutex_lock(&mutex);");
     //编码与推流
     videoChannel->encode(reinterpret_cast<uint8_t *>(data));
-    LOGI("videoChannel->encode(reinterpret_cast<uint8_t *>(data));");
+    if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("videoChannel->encode(reinterpret_cast<uint8_t *>(data));");
     pthread_mutex_unlock(&mutex);
-    LOGI("pthread_mutex_unlock(&mutex);");
+    if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("pthread_mutex_unlock(&mutex);");
     env->ReleaseByteArrayElements(buffer, data, 0);
-    LOGI("env->ReleaseByteArrayElements(buffer, data, 0);");
+    if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("env->ReleaseByteArrayElements(buffer, data, 0);");
 }
 
 extern "C"

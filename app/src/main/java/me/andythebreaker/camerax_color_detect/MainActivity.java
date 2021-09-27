@@ -45,6 +45,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.Size;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             rtmpClient = new RtmpClient(/*this*/);
             //初始化摄像头， 同时 创建编码器
             //int heighteven = (main_height % 2 == 0) ? main_height : main_height + 1;
-            rtmpClient.initVideo(640, 480, 10, 2500);
+            rtmpClient.initVideo(800, 600, 20, 1000000);
             rtmpClient.initAudio(44100, 2);
             rtmpClient.startLive(rtmpurl.getText().toString());
         } else if ("stop".equals(text)) {
@@ -232,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
     void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
         Preview preview;
         preview = new Preview.Builder()
+                .setTargetResolution(new Size(600, 800))
                 .build();
 
         CameraSelector cameraSelector = new CameraSelector.Builder()
@@ -239,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
+                .setTargetResolution(new Size(600, 800))
                 .build();
 
         imageAnalysis.setAnalyzer(executor, new ImageAnalysis.Analyzer() {
@@ -248,15 +251,10 @@ public class MainActivity extends AppCompatActivity {
                 long intervalInMilliSeconds = TimeUnit.MILLISECONDS.toMillis(100);
                 long deltaTime = currentTimeStamp - lastTimeStamp;
 
-                //TODO:why?only640*480?is old ver. the same 640*480???
-                /*@SuppressLint("UnsafeOptInUsageError") Image currentTimeImageTest = imageProxy.getImage();
-                Log.d("andythebreaker", "w" + Integer.toString(currentTimeImageTest.getWidth()) + "h" +
-                        Integer.toString(currentTimeImageTest.getHeight()));*/
-
                 // 开启直播并且已经成功连接服务器才获取i420数据
                 if ("stop".equals(rtmpSVswitch_obj.getText()) && rtmpClient.isConnectd()) {
                     byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());
-                    Log.e("andythebreaker", "byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());");
+                    //Log.e("andythebreaker", "byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());");
                     rtmpClient.sendVideo(bytes);
                 }
 
@@ -265,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
                     @SuppressLint("UnsafeOptInUsageError") Image currentTimeImage = imageProxy.getImage();
                     int this_width = currentTimeImage.getWidth();
                     int this_height = currentTimeImage.getHeight();
+                    Log.e("andythebreaker","width:"+Integer.toString(this_width)+"height"+Integer.toString(this_height));
                     //imgwidthheight.setText("width"+String.valueOf(this_width)+"height"+String.valueOf(this_height));
                     //TODO: go with only buffer and not convert buffer 2 array
                     Image.Plane planes[] = currentTimeImage.getPlanes();
@@ -354,8 +353,8 @@ public class MainActivity extends AppCompatActivity {
                     colordec4.setText(enum12color(findColorSim(rgbintVector, 12 + 3)));
                     currentTimeImage.close();
                     lastTimeStamp = currentTimeStamp;
-                }
-                */imageProxy.close();
+                }*/
+                imageProxy.close();
             }
         });
 
@@ -375,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
         int camphy_left = preview.getResolutionInfo().getCropRect().left;
         int camphy_right = preview.getResolutionInfo().getCropRect().right;
         String cam_phy = "camphy_bottom\n" + camphy_bottom + "camphy_top\n" + camphy_top + "camphy_left\n" + camphy_left + "camphy_right\n" + camphy_right;
-        Log.i("dev", cam_phy);
+        //Log.e("dev", cam_phy);
         int cam_phy_width = main_width;
         int cam_phy_height = (main_width * camphy_right) / camphy_bottom;
         Bitmap draw_a_rect_bitmap = Bitmap.createBitmap(cam_phy_width, cam_phy_height/*720,720*/, Bitmap.Config.ARGB_8888);
@@ -432,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
                 .extractCameraCharacteristics(camera.getCameraInfo());
         float discoveredMinFocusDistance = camChars
                 .get(CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE);
-        Log.i("dev", "\t\t\t----------------------------\n\n\n----------------------------------------\t\t\tfound it! " + discoveredMinFocusDistance);
+        //Log.i("dev", "\t\t\t----------------------------\n\n\n----------------------------------------\t\t\tfound it! " + discoveredMinFocusDistance);
         t3.setText(String.valueOf(discoveredMinFocusDistance));
         captureImage.setOnClickListener(v -> {
             if (switch_if_af.isChecked()) {
@@ -520,7 +519,7 @@ public class MainActivity extends AppCompatActivity {
         if (!dir.exists() && !dir.mkdirs()) {
 
         }
-        Log.d("app_folder_path", app_folder_path);
+        //Log.d("app_folder_path", app_folder_path);
         return app_folder_path;
     }
 

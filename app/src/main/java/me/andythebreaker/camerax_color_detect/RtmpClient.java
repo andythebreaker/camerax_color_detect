@@ -65,7 +65,7 @@ public class RtmpClient {
     private void onPrepare(boolean isConnect) {
         this.isConnectd = isConnect;
         audioChannel.start();
-        Log.e(TAG, "开始直播==================");
+        Log.e(TAG, "開始直播==================");
 
     }
 
