@@ -6,6 +6,17 @@ tags: github
 
 [![hackmd-github-sync-badge](https://hackmd.io/ECZWdPoMQI2U9fR0du-ckA/badge)](https://hackmd.io/ECZWdPoMQI2U9fR0du-ckA)
 
+---
+
+# Code branch announcement
+
+- goodCVbasic
+> Mobile device computing
+- main
+> Streaming and remote image analysis
+
+---
+
 # camerax_color_detect
 
 [demo video](https://youtu.be/2Amm6SG2TCs)
