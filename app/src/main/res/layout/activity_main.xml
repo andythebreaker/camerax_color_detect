@@ -123,7 +123,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Name" />
+                android:text="rtmp://m1rry.11.ncku.1du.tw:51935" />
 
             <Button
                 android:text="start"
