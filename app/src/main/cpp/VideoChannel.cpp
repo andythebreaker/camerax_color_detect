@@ -5,6 +5,7 @@
 #include <rtmp.h>
 #include "VideoChannel.h"
 #include <android/log.h>
+#include <string>
 
 VideoChannel::VideoChannel() {
 
@@ -75,7 +76,7 @@ void VideoChannel::encode(uint8_t *data) {
     pic_in.img.plane[2] = data + ySize + uSize;
     //todo 编码的i_pts，每次需要增长
     pic_in.i_pts = i_pts++;
-
+    __android_log_print(ANDROID_LOG_INFO, "X264", "%s", std::to_string(i_pts).c_str());//!正確的log方法
 
     x264_picture_t pic_out;
     x264_nal_t *pp_nal;

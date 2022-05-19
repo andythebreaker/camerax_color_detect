@@ -135,3 +135,768 @@ to avoid problem @ saving img.
 ## More brilliant parts that may be practiced
 
 Monochrome-based color correction
+
+# TODO
+
+```=
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+I/ax_color_detec: NativeAlloc concurrent copying GC freed 29831(1130KB) AllocSpace objects, 0(0B) LOS objects, 80% free, 4561KB/22MB, paused 182us total 106.037ms
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+E/Camera2-Metadata: updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: calloc(1, 31392) failed: returning null pointer
+E/Camera2-Metadata: resizeIfNeeded: Can't allocate larger metadata buffer
+    updateImpl: Unable to update metadata entry android.lens.info.shadingMapSize (90006): Out of memory (-12)
+W/Binder: Caught a RuntimeException from the binder stub implementation.
+    java.lang.IllegalStateException: Unknown error (-12) while trying to update metadata
+        at android.hardware.camera2.impl.CameraMetadataNative.nativeWriteValues(Native Method)
+        at android.hardware.camera2.impl.CameraMetadataNative.writeValues(CameraMetadataNative.java:1876)
+        at android.hardware.camera2.impl.CameraMetadataNative.setBase(CameraMetadataNative.java:1558)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:491)
+        at android.hardware.camera2.impl.CameraMetadataNative.set(CameraMetadataNative.java:503)
+        at android.hardware.camera2.impl.CameraDeviceImpl$CameraDeviceCallbacks.onResultReceived(CameraDeviceImpl.java:1937)
+        at android.hardware.camera2.ICameraDeviceCallbacks$Stub.onTransact(ICameraDeviceCallbacks.java:182)
+        at android.os.Binder.execTransactInternal(Binder.java:1195)
+        at android.os.Binder.execTransact(Binder.java:1159)
+W/libc: calloc(1, 15696) failed: returning null pointer
+A/libc: Fatal signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0 in tid 2929 (Binder:2747_5), pid 2747 (ax_color_detect)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: pthread_create failed: couldn't allocate 1052672-bytes mapped space: Out of memory
+E/libutils.threads: androidCreateRawThreadEtc failed (entry=0xf1e535c1, res=11, Success)
+    (android threadPriority=0)
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+W/libc: memalign(16, 720000) failed: returning null pointer
+```

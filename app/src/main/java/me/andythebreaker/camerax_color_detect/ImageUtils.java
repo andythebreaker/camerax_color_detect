@@ -35,6 +35,7 @@ public class ImageUtils {
         if(log_andythebreaker_image_dont_go_out)Log.d("andythebreaker", "block1");
         if (yuv420 == null || yuv420.capacity() < size) {
             yuv420 = ByteBuffer.allocate(size);
+            Log.d("andythebreaker", "yuv420 = ByteBuffer.allocate(size);");
         }
         yuv420.position(0);
 
