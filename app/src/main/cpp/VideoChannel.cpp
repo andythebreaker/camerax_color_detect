@@ -67,49 +67,55 @@ void VideoChannel::openCodec(int width, int height, int fps, int bitrate) {
 void VideoChannel::encode(uint8_t *data) {
     //输出的待编码数据
     x264_picture_t pic_in;
-    x264_picture_alloc(&pic_in, X264_CSP_I420, width, height);
+    if (x264_picture_alloc(&pic_in, X264_CSP_I420, width, height) == 0) {
 
-    pic_in.img.plane[0] = data;
-    pic_in.img.plane[1] = data + ySize;
-    pic_in.img.plane[2] = data + ySize + uSize;
-    //todo 编码的i_pts，每次需要增长
-    pic_in.i_pts = i_pts++;
-    //__android_log_print(ANDROID_LOG_INFO, "X264", "%s", std::to_string(i_pts).c_str());//!正確的log方法
+        pic_in.img.plane[0] = data;
+        pic_in.img.plane[1] = data + ySize;
+        pic_in.img.plane[2] = data + ySize + uSize;
+        //todo 编码的i_pts，每次需要增长
+        pic_in.i_pts = i_pts++;
+        //__android_log_print(ANDROID_LOG_INFO, "X264", "%s", std::to_string(i_pts).c_str());//!正確的log方法
 
-    x264_picture_t pic_out;
-    x264_nal_t *pp_nal;
-    int pi_nal;
-    //pi_nal: 输出了多少nal
-    int error = x264_encoder_encode(codec, &pp_nal, &pi_nal, &pic_in, &pic_out);
-    if (error <= 0) {
-        return;
-    }
-    int spslen, ppslen;
-    uint8_t *sps;
-    uint8_t *pps;
-    for (int i = 0; i < pi_nal; ++i) {
-        int type = pp_nal[i].i_type;
-        //数据
-        uint8_t *p_payload = pp_nal[i].p_payload;
-        //数据长度
-        int i_payload = pp_nal[i].i_payload;
-        if (type == NAL_SPS) {
-            //sps后面肯定跟着pps
-            spslen = i_payload - 4; //去掉间隔 00 00 00 01
-            sps = (uint8_t *) alloca(spslen); //栈中申请，不需要释放
-            memcpy(sps, p_payload + 4, spslen);
-        } else if (type == NAL_PPS) {
-            ppslen = i_payload - 4; //去掉间隔 00 00 00 01
-            pps = (uint8_t *) alloca(ppslen);
-            memcpy(pps, p_payload + 4, ppslen);
-
-            //pps 后面肯定有I帧 ,发I帧之前要发一个sps与pps
-            sendVideoConfig(sps, pps, spslen, ppslen);
-        } else {
-            sendFrame(type, p_payload, i_payload);
+        x264_picture_t pic_out;
+        x264_nal_t *pp_nal;
+        int pi_nal;
+        //pi_nal: 输出了多少nal
+        int error = x264_encoder_encode(codec, &pp_nal, &pi_nal, &pic_in, &pic_out);
+        if (error <= 0) {
+            return;
         }
+
+        int spslen, ppslen;
+        uint8_t *sps;
+        uint8_t *pps;
+        for (int i = 0; i < pi_nal; ++i) {
+            int type = pp_nal[i].i_type;
+            //数据
+            uint8_t *p_payload = pp_nal[i].p_payload;
+            //数据长度
+            int i_payload = pp_nal[i].i_payload;
+            if (type == NAL_SPS) {
+                //sps后面肯定跟着pps
+                spslen = i_payload - 4; //去掉间隔 00 00 00 01
+                sps = (uint8_t *) alloca(spslen); //栈中申请，不需要释放
+                memcpy(sps, p_payload + 4, spslen);
+            } else if (type == NAL_PPS) {
+                ppslen = i_payload - 4; //去掉间隔 00 00 00 01
+                pps = (uint8_t *) alloca(ppslen);
+                memcpy(pps, p_payload + 4, ppslen);
+
+                //pps 后面肯定有I帧 ,发I帧之前要发一个sps与pps
+                sendVideoConfig(sps, pps, spslen, ppslen);
+            } else {
+                sendFrame(type, p_payload, i_payload);
+            }
+        }
+        //x264_picture_clean(&pic_in);
+        //https://stackoverflow.com/questions/43798255/x264-encoding-use-x264-picture-clean-crash
+    } else {
+        __android_log_print(ANDROID_LOG_INFO, "X264",
+                            "picture_alloc FAILED!!!!!!!!!!!!");//!正確的log方法
     }
-    x264_picture_clean(&pic_in);
 }
 
 void VideoChannel::sendVideoConfig(uint8_t *sps, uint8_t *pps, int spslen, int ppslen) {
