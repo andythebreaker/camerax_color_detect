@@ -4,11 +4,12 @@
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_me_andythebreaker_camerax_1color_1detect_ImageUtils_rotation(JNIEnv *env, jclass thiz, jbyteArray data_, jint width,
-                                          jint height, jint degress) {
+Java_me_andythebreaker_camerax_1color_1detect_ImageUtils_rotation(JNIEnv *env, jclass thiz,
+                                                                  jbyteArray data_, jint width,
+                                                                  jint height, jint degress) {
 
-    jbyte *data = env->GetByteArrayElements(data_, 0);
-    uint8_t *src = reinterpret_cast<uint8_t *>(data);
+    jbyte *data = env->GetByteArrayElements(data_, nullptr);
+    auto *src = reinterpret_cast<uint8_t *>(data);
     int ySize = width * height;
     int uSize = (width >> 1) * (height >> 1);
     int size = (ySize * 3) >> 1;
@@ -36,11 +37,13 @@ Java_me_andythebreaker_camerax_1color_1detect_ImageUtils_rotation(JNIEnv *env, j
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_me_andythebreaker_camerax_1color_1detect_ImageUtils_scale(JNIEnv *env, jclass clazz, jbyteArray src_, jbyteArray dst_,
-                                       jint srcWidth,
-                                       jint srcHeight, jint dstWidth, jint dstHeight) {
-    jbyte *data = env->GetByteArrayElements(src_, 0);
-    uint8_t *src = reinterpret_cast<uint8_t *>(data);
+Java_me_andythebreaker_camerax_1color_1detect_ImageUtils_scale(JNIEnv *env, jclass clazz,
+                                                               jbyteArray src_, jbyteArray dst_,
+                                                               jint srcWidth,
+                                                               jint srcHeight, jint dstWidth,
+                                                               jint dstHeight) {
+    jbyte *data = env->GetByteArrayElements(src_, nullptr);
+    auto *src = reinterpret_cast<uint8_t *>(data);
 
     int64_t size = (dstWidth * dstHeight * 3) >> 1;
     uint8_t dst[size];

@@ -7,14 +7,12 @@
 #include <android/log.h>
 #include <string>
 
-VideoChannel::VideoChannel() {
-
-}
+VideoChannel::VideoChannel() = default;
 
 VideoChannel::~VideoChannel() {
     if (codec) {
         x264_encoder_close(codec);
-        codec = 0;
+        codec = nullptr;
     }
 }
 
@@ -76,7 +74,7 @@ void VideoChannel::encode(uint8_t *data) {
     pic_in.img.plane[2] = data + ySize + uSize;
     //todo 编码的i_pts，每次需要增长
     pic_in.i_pts = i_pts++;
-    __android_log_print(ANDROID_LOG_INFO, "X264", "%s", std::to_string(i_pts).c_str());//!正確的log方法
+    //__android_log_print(ANDROID_LOG_INFO, "X264", "%s", std::to_string(i_pts).c_str());//!正確的log方法
 
     x264_picture_t pic_out;
     x264_nal_t *pp_nal;
@@ -111,12 +109,12 @@ void VideoChannel::encode(uint8_t *data) {
             sendFrame(type, p_payload, i_payload);
         }
     }
-
+    x264_picture_clean(&pic_in);
 }
 
 void VideoChannel::sendVideoConfig(uint8_t *sps, uint8_t *pps, int spslen, int ppslen) {
     int bodySize = 13 + spslen + 3 + ppslen;
-    RTMPPacket *packet = new RTMPPacket;
+    auto *packet = new RTMPPacket;
     RTMPPacket_Alloc(packet, bodySize);
 
     int i = 0;
@@ -172,7 +170,7 @@ void VideoChannel::sendFrame(int type, uint8_t *p_payload, int i_payload) {
         i_payload -= 3;
         p_payload += 3;
     }
-    RTMPPacket *packet = new RTMPPacket;
+    auto *packet = new RTMPPacket;
     int bodysize = 9 + i_payload;
     RTMPPacket_Alloc(packet, bodysize);
     RTMPPacket_Reset(packet);

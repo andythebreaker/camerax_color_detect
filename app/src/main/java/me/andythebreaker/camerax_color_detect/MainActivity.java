@@ -18,6 +18,7 @@ import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 //import androidx.compose.ui.graphics.Paint;
+import android.Manifest;
 import android.graphics.RectF;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -70,6 +71,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.OptionalDouble;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
@@ -84,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public long lastTimeStamp;
-    private Executor executor = Executors.newSingleThreadExecutor();
-    private int REQUEST_CODE_PERMISSIONS = 1001;
+    private final Executor executor = Executors.newSingleThreadExecutor();
     private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.RECORD_AUDIO", "android.permission.INTERNET", "android.permission.ACCESS_WIFI_STATE", "android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"};
     public int main_height;
     public int main_width;
@@ -121,9 +122,10 @@ public class MainActivity extends AppCompatActivity {
     private RtmpClient rtmpClient;
     EditText rtmpurl;
 
+    @SuppressLint("SetTextI18n")
     public void rtmpSVswitch(View view) {
         CharSequence text = rtmpSVswitch_obj.getText();
-        if ("start".equals(text)) {
+        if ("start".contentEquals(text)) {
             toast_is_good_to_eat("start");
             rtmpSVswitch_obj.setText("stop");
             rtmpClient = new RtmpClient(/*this*/);
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             rtmpClient.initVideo(800, 600, 20, 1000000);
             rtmpClient.initAudio(44100, 2);
             rtmpClient.startLive(rtmpurl.getText().toString());
-        } else if ("stop".equals(text)) {
+        } else if ("stop".contentEquals(text)) {
             toast_is_good_to_eat("stop");
             rtmpSVswitch_obj.setText("start");
             rtmpClient.stopLive();
@@ -141,10 +143,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
 
         //init
         rtmpurl = (EditText) findViewById(R.id.editTextTextPersonName2);
@@ -161,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         main_height = displayMetrics.heightPixels;
         main_width = displayMetrics.widthPixels;
-        imgwidthheight.setText("height" + String.valueOf(main_height) + "width" + String.valueOf(main_width));
+        imgwidthheight.setText("height" + main_height + "width" + main_width);
         imageViewcan = findViewById(R.id.imageViewcan);
         imageViewcan.setBackgroundColor(Color.TRANSPARENT);
         //toast_is_good_to_eat(mPreviewView.getScaleType().toString());
@@ -212,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         if (allPermissionsGranted()) {
             startCamera(); //start camera if permission has been granted by user
         } else {
+            int REQUEST_CODE_PERMISSIONS = 1001;
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
         }
     }
@@ -230,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
         Preview preview;
         preview = new Preview.Builder()
@@ -244,118 +260,125 @@ public class MainActivity extends AppCompatActivity {
                 .setTargetResolution(new Size(600, 800))
                 .build();
 
-        imageAnalysis.setAnalyzer(executor, new ImageAnalysis.Analyzer() {
-            @Override
-            public void analyze(@NonNull ImageProxy imageProxy) {
-                long currentTimeStamp = System.currentTimeMillis();
-                long intervalInMilliSeconds = TimeUnit.MILLISECONDS.toMillis(100);
-                long deltaTime = currentTimeStamp - lastTimeStamp;
+        imageAnalysis.setAnalyzer(executor, imageProxy -> {
+            //long currentTimeStamp = System.currentTimeMillis();
+            //long intervalInMilliSeconds = TimeUnit.MILLISECONDS.toMillis(100);
+            //long deltaTime = currentTimeStamp - lastTimeStamp;
 
-                // 开启直播并且已经成功连接服务器才获取i420数据
-                if ("stop".equals(rtmpSVswitch_obj.getText()) && rtmpClient.isConnectd()) {
-                    byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());
-                    //Log.e("andythebreaker", "byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());");
-                    rtmpClient.sendVideo(bytes);
-                }
+            // 开启直播并且已经成功连接服务器才获取i420数据
+            if ("stop".contentEquals(rtmpSVswitch_obj.getText()) && rtmpClient.isConnectd()) {
+                byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());
+                //Log.e("andythebreaker", "byte[] bytes = ImageUtils.getBytes(imageProxy, 0, rtmpClient.getWidth(), rtmpClient.getHeight());");
+                rtmpClient.sendVideo(bytes);
 
-                /*if (deltaTime >= intervalInMilliSeconds) {
-                    //https://stackoverflow.com/questions/59613886/android-camerax-color-detection
-                    @SuppressLint("UnsafeOptInUsageError") Image currentTimeImage = imageProxy.getImage();
-                    int this_width = currentTimeImage.getWidth();
-                    int this_height = currentTimeImage.getHeight();
-                    Log.e("andythebreaker","width:"+Integer.toString(this_width)+"height"+Integer.toString(this_height));
-                    //imgwidthheight.setText("width"+String.valueOf(this_width)+"height"+String.valueOf(this_height));
-                    //TODO: go with only buffer and not convert buffer 2 array
-                    Image.Plane planes[] = currentTimeImage.getPlanes();
-                    ByteBuffer yBuffer = planes[0].getBuffer(); // Y
-                    ByteBuffer uBuffer = planes[1].getBuffer(); // U
-                    ByteBuffer vBuffer = planes[2].getBuffer(); // V
-                    //byte[] data=ByteBuffer_toByteArray()
-                    int ySize = yBuffer.remaining();
-                    int uSize = uBuffer.remaining();
-                    int vSize = vBuffer.remaining();
-                    byte[] nv21 = new byte[ySize + uSize + vSize];
-                    yBuffer.get(nv21, 0, ySize);
-                    vBuffer.get(nv21, ySize, vSize);
-                    uBuffer.get(nv21, ySize + vSize, uSize);
-                    YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, this_width, this_height, null);
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    yuvImage.compressToJpeg(new Rect(0, 0, yuvImage.getWidth(), yuvImage.getHeight()), 50, out);
-                    byte[] imageBytes = out.toByteArray();
-                    Bitmap private_fun_Image_toBitmap_Bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                    int bmp_height = private_fun_Image_toBitmap_Bitmap.getWidth();
-                    int bmp_width = private_fun_Image_toBitmap_Bitmap.getHeight();
-                    float blockcell = bmp_width / 8;
-                    float block_margen_top = (bmp_height - blockcell * 3) / 2;
-                    float leftRightMargenGuiResLine = blockcell * 6 * (1.15f / (1.15f + 0.9f + 1.15f));//copy
-                    float fullBodyGuiResLine = blockcell * 6 * (0.9f / (1.15f + 0.9f + 1.15f));//copy
-                    float margenBetweenGuiResLine = fullBodyGuiResLine / 5;//copy
-                    int pixel = private_fun_Image_toBitmap_Bitmap.getPixel((bmp_width / 2), (bmp_height / 2));
-
-                    colorcodetext.setText(ddb98b(rgbint(pixel)));
-                    //important::getpixel::width/height相反
-                    //TODO:整個分析都是靜巷的
-                    Vector rgbintVector = new Vector();
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 1.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 2.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 3.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 4.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 5.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 6.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 1.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 2.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 3.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 4.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 5.5f))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 6.5f))));
-                    colortext1.setText(ddb98b((int[]) rgbintVector.get(0)));
-                    colortext2.setText(ddb98b((int[]) rgbintVector.get(1)));
-                    colortext3.setText(ddb98b((int[]) rgbintVector.get(2)));
-                    colortext4.setText(ddb98b((int[]) rgbintVector.get(3)));
-                    colortext5.setText(ddb98b((int[]) rgbintVector.get(4)));
-                    colortext6.setText(ddb98b((int[]) rgbintVector.get(5)));
-                    colortext7.setText(ddb98b((int[]) rgbintVector.get(6)));
-                    colortext8.setText(ddb98b((int[]) rgbintVector.get(7)));
-                    colortext9.setText(ddb98b((int[]) rgbintVector.get(8)));
-                    colortext10.setText(ddb98b((int[]) rgbintVector.get(9)));
-                    colortext11.setText(ddb98b((int[]) rgbintVector.get(10)));
-                    colortext12.setText(ddb98b((int[]) rgbintVector.get(11)));
-
-                    textViewHexTextSetBackground(colortext1);
-                    textViewHexTextSetBackground(colortext2);
-                    textViewHexTextSetBackground(colortext3);
-                    textViewHexTextSetBackground(colortext4);
-                    textViewHexTextSetBackground(colortext5);
-                    textViewHexTextSetBackground(colortext6);
-                    textViewHexTextSetBackground(colortext7);
-                    textViewHexTextSetBackground(colortext8);
-                    textViewHexTextSetBackground(colortext9);
-                    textViewHexTextSetBackground(colortext10);
-                    textViewHexTextSetBackground(colortext11);
-                    textViewHexTextSetBackground(colortext12);
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 1))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 2))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 3))));
-                    rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 4))));
-                    colorrec1.setText(ddb98b((int[]) rgbintVector.get(12)));
-                    colorrec2.setText(ddb98b((int[]) rgbintVector.get(13)));
-                    colorrec3.setText(ddb98b((int[]) rgbintVector.get(14)));
-                    colorrec4.setText(ddb98b((int[]) rgbintVector.get(15)));
-
-                    textViewHexTextSetBackground(colorrec1);
-                    textViewHexTextSetBackground(colorrec2);
-                    textViewHexTextSetBackground(colorrec3);
-                    textViewHexTextSetBackground(colorrec4);
-
-                    colordec1.setText(enum12color(findColorSim(rgbintVector, 12 + 0)));
-                    colordec2.setText(enum12color(findColorSim(rgbintVector, 12 + 1)));
-                    colordec3.setText(enum12color(findColorSim(rgbintVector, 12 + 2)));
-                    colordec4.setText(enum12color(findColorSim(rgbintVector, 12 + 3)));
-                    currentTimeImage.close();
-                    lastTimeStamp = currentTimeStamp;
-                }*/
-                imageProxy.close();
             }
+
+            /*if (deltaTime >= intervalInMilliSeconds) {
+                //https://stackoverflow.com/questions/59613886/android-camerax-color-detection
+                @SuppressLint("UnsafeOptInUsageError") Image currentTimeImage = imageProxy.getImage();
+                int this_width = currentTimeImage.getWidth();
+                int this_height = currentTimeImage.getHeight();
+                Log.e("andythebreaker","width:"+Integer.toString(this_width)+"height"+Integer.toString(this_height));
+                //imgwidthheight.setText("width"+String.valueOf(this_width)+"height"+String.valueOf(this_height));
+                //TODO: go with only buffer and not convert buffer 2 array
+                Image.Plane planes[] = currentTimeImage.getPlanes();
+                ByteBuffer yBuffer = planes[0].getBuffer(); // Y
+                ByteBuffer uBuffer = planes[1].getBuffer(); // U
+                ByteBuffer vBuffer = planes[2].getBuffer(); // V
+                //byte[] data=ByteBuffer_toByteArray()
+                int ySize = yBuffer.remaining();
+                int uSize = uBuffer.remaining();
+                int vSize = vBuffer.remaining();
+                byte[] nv21 = new byte[ySize + uSize + vSize];
+                yBuffer.get(nv21, 0, ySize);
+                vBuffer.get(nv21, ySize, vSize);
+                uBuffer.get(nv21, ySize + vSize, uSize);
+                YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, this_width, this_height, null);
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                yuvImage.compressToJpeg(new Rect(0, 0, yuvImage.getWidth(), yuvImage.getHeight()), 50, out);
+                byte[] imageBytes = out.toByteArray();
+                Bitmap private_fun_Image_toBitmap_Bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                int bmp_height = private_fun_Image_toBitmap_Bitmap.getWidth();
+                int bmp_width = private_fun_Image_toBitmap_Bitmap.getHeight();
+                float blockcell = bmp_width / 8;
+                float block_margen_top = (bmp_height - blockcell * 3) / 2;
+                float leftRightMargenGuiResLine = blockcell * 6 * (1.15f / (1.15f + 0.9f + 1.15f));//copy
+                float fullBodyGuiResLine = blockcell * 6 * (0.9f / (1.15f + 0.9f + 1.15f));//copy
+                float margenBetweenGuiResLine = fullBodyGuiResLine / 5;//copy
+                int pixel = private_fun_Image_toBitmap_Bitmap.getPixel((bmp_width / 2), (bmp_height / 2));
+
+                colorcodetext.setText(ddb98b(rgbint(pixel)));
+                //important::getpixel::width/height相反
+                //TODO:整個分析都是靜巷的
+                Vector rgbintVector = new Vector();
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 1.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 2.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 3.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 4.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 5.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 0.5f), Math.round(blockcell * 6.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 1.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 2.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 3.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 4.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 5.5f))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 2.5f), Math.round(blockcell * 6.5f))));
+                colortext1.setText(ddb98b((int[]) rgbintVector.get(0)));
+                colortext2.setText(ddb98b((int[]) rgbintVector.get(1)));
+                colortext3.setText(ddb98b((int[]) rgbintVector.get(2)));
+                colortext4.setText(ddb98b((int[]) rgbintVector.get(3)));
+                colortext5.setText(ddb98b((int[]) rgbintVector.get(4)));
+                colortext6.setText(ddb98b((int[]) rgbintVector.get(5)));
+                colortext7.setText(ddb98b((int[]) rgbintVector.get(6)));
+                colortext8.setText(ddb98b((int[]) rgbintVector.get(7)));
+                colortext9.setText(ddb98b((int[]) rgbintVector.get(8)));
+                colortext10.setText(ddb98b((int[]) rgbintVector.get(9)));
+                colortext11.setText(ddb98b((int[]) rgbintVector.get(10)));
+                colortext12.setText(ddb98b((int[]) rgbintVector.get(11)));
+
+                textViewHexTextSetBackground(colortext1);
+                textViewHexTextSetBackground(colortext2);
+                textViewHexTextSetBackground(colortext3);
+                textViewHexTextSetBackground(colortext4);
+                textViewHexTextSetBackground(colortext5);
+                textViewHexTextSetBackground(colortext6);
+                textViewHexTextSetBackground(colortext7);
+                textViewHexTextSetBackground(colortext8);
+                textViewHexTextSetBackground(colortext9);
+                textViewHexTextSetBackground(colortext10);
+                textViewHexTextSetBackground(colortext11);
+                textViewHexTextSetBackground(colortext12);
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 1))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 2))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 3))));
+                rgbintVector.add(rgbint(private_fun_Image_toBitmap_Bitmap.getPixel(Math.round(block_margen_top + blockcell * 1.5f), Math.round(blockcell + leftRightMargenGuiResLine + margenBetweenGuiResLine * 4))));
+                colorrec1.setText(ddb98b((int[]) rgbintVector.get(12)));
+                colorrec2.setText(ddb98b((int[]) rgbintVector.get(13)));
+                colorrec3.setText(ddb98b((int[]) rgbintVector.get(14)));
+                colorrec4.setText(ddb98b((int[]) rgbintVector.get(15)));
+
+                textViewHexTextSetBackground(colorrec1);
+                textViewHexTextSetBackground(colorrec2);
+                textViewHexTextSetBackground(colorrec3);
+                textViewHexTextSetBackground(colorrec4);
+
+                colordec1.setText(enum12color(findColorSim(rgbintVector, 12 + 0)));
+                colordec2.setText(enum12color(findColorSim(rgbintVector, 12 + 1)));
+                colordec3.setText(enum12color(findColorSim(rgbintVector, 12 + 2)));
+                colordec4.setText(enum12color(findColorSim(rgbintVector, 12 + 3)));
+                currentTimeImage.close();
+                lastTimeStamp = currentTimeStamp;
+            }*/
+
+            System.gc();
+            /*TODO GC
+             * bitmap : use : https://stackoverflow.com/questions/3117429/garbage-collector-in-android
+             * not to use : https://stackoverflow.com/questions/8177802/garbage-collection-in-android-done-manually
+             * so, use or not use ????
+             * not use full
+             */
+
+            imageProxy.close();
         });
 
         ImageCapture.Builder builder = new ImageCapture.Builder();
@@ -369,7 +392,7 @@ public class MainActivity extends AppCompatActivity {
 
         Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview, imageAnalysis, imageCapture);
 
-        int camphy_bottom = preview.getResolutionInfo().getCropRect().bottom;
+        int camphy_bottom = Objects.requireNonNull(preview.getResolutionInfo()).getCropRect().bottom;
         int camphy_top = preview.getResolutionInfo().getCropRect().top;
         int camphy_left = preview.getResolutionInfo().getCropRect().left;
         int camphy_right = preview.getResolutionInfo().getCropRect().right;
@@ -388,7 +411,7 @@ public class MainActivity extends AppCompatActivity {
         /*canvas.drawCircle(80,20,20,p);
         RectF rect = new RectF(0f, 0f, 720f, 600f);
         canvas.drawRect(rect, p);*/
-        float blockcell = cam_phy_width / 8;
+        float blockcell = (float) (cam_phy_width / 8.0);
         float block_margen_top = (cam_phy_height - blockcell * 3) / 2;
         float leftRightMargenGuiResLine = blockcell * 6 * (1.15f / (1.15f + 0.9f + 1.15f));
         float fullBodyGuiResLine = blockcell * 6 * (0.9f / (1.15f + 0.9f + 1.15f));
@@ -443,37 +466,30 @@ public class MainActivity extends AppCompatActivity {
             imageCapture.takePicture(outputFileOptions, executor, new ImageCapture.OnImageSavedCallback() {
                 @Override
                 public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                    new Handler(Looper.getMainLooper()).post(() -> {
-                        Toast.makeText(MainActivity.this, "Image Saved successfully", Toast.LENGTH_SHORT).show();
-                    });
+                    new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(MainActivity.this, "Image Saved successfully", Toast.LENGTH_SHORT).show());
                 }
 
                 @Override
                 public void onError(@NonNull ImageCaptureException error) {
                     //TODO: https://blog.csdn.net/djzhao627/article/details/111696044
                     error.printStackTrace();
-                    new Handler(Looper.getMainLooper()).post(() -> {
-                        Toast.makeText(MainActivity.this, "Image Saved ERROR" + error.toString(), Toast.LENGTH_SHORT).show();
-                    });
+                    new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(MainActivity.this, "Image Saved ERROR" + error.toString(), Toast.LENGTH_SHORT).show());
                 }
             });
         });
 
-        mPreviewView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        return focus(v, event, camera);
-                    //break;
-                    default:
-                        // Unhandled event.
-                        return false;
-                }
-                return true;
+        mPreviewView.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    break;
+                case MotionEvent.ACTION_UP:
+                    return focus(v, event, camera);
+                //break;
+                default:
+                    // Unhandled event.
+                    return false;
             }
+            return true;
         });
     }
 
@@ -486,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean focus(View v, MotionEvent event, Camera camcrtl) {
         final float x = (event != null) ? event.getX() : v.getX() + v.getWidth() / 2f;
         final float y = (event != null) ? event.getY() : v.getY() + v.getHeight() / 2f;
-        toast_is_good_to_eat("x=" + String.valueOf(x) + ";y=" + String.valueOf(y));
+        toast_is_good_to_eat("x=" + x + ";y=" + y);
         MeteringPointFactory pointFactory = mPreviewView.getMeteringPointFactory();
         float afPointWidth = 1.0f / 6.0f;  // 1/6 total area
         float aePointWidth = afPointWidth * 1.5f;
@@ -513,7 +529,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static String getBatchDirectoryName() {
-        String app_folder_path = "";
+        String app_folder_path;
         app_folder_path = Environment.getExternalStorageDirectory().toString() + "/images";
         File dir = new File(app_folder_path);
         if (!dir.exists() && !dir.mkdirs()) {
@@ -527,8 +543,7 @@ public class MainActivity extends AppCompatActivity {
         int red = Color.red(pix);
         int blue = Color.blue(pix);
         int green = Color.green(pix);
-        int[] stufftoreturn = new int[]{red, green, blue};
-        return stufftoreturn;
+        return new int[]{red, green, blue};
     }
 
     public static String ddb98b(int[] intary3) {
@@ -541,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public static Color hex2Rgb(String colorStr) {
         Color stufftoreturn = new Color();
-        stufftoreturn.valueOf(
+        Color.valueOf(
                 Integer.valueOf(colorStr.substring(1, 3), 16) / 255f,
                 Integer.valueOf(colorStr.substring(3, 5), 16) / 255f,
                 Integer.valueOf(colorStr.substring(5, 7), 16) / 255f);

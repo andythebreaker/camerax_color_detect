@@ -13,11 +13,11 @@
 
 VideoChannel *videoChannel = nullptr;
 AudioChannel *audioChannel = nullptr;
-JavaVM *javaVM = 0;
-JavaCallHelper *helper = 0;
+JavaVM *javaVM = nullptr;
+JavaCallHelper *helper = nullptr;
 pthread_t pid;
-char *path = 0;
-RTMP *rtmp = 0;
+char *path = nullptr;
+RTMP *rtmp = nullptr;
 uint64_t startTime;
 
 pthread_mutex_t mutex;
@@ -52,7 +52,7 @@ void *connect(void *args) {
         }
         //开启输出模式， 播放拉流不需要推流，就可以不开
         RTMP_EnableWrite(rtmp);
-        ret = RTMP_Connect(rtmp, 0);
+        ret = RTMP_Connect(rtmp, nullptr);
         if (!ret) {
             //todo 通知Java 服务器连接失败。
             break;
@@ -70,16 +70,16 @@ void *connect(void *args) {
     if (!ret) {
         RTMP_Close(rtmp);
         RTMP_Free(rtmp);
-        rtmp = 0;
+        rtmp = nullptr;
     }
 
     delete (path);
-    path = 0;
+    path = nullptr;
 
     // 通知Java层可以开始推流了
     helper->onParpare(ret);
     startTime = RTMP_GetTime();
-    return 0;
+    return nullptr;
 }
 
 
@@ -87,11 +87,11 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_connect(JNIEnv *env, jobject thiz, jstring url_) {
 
-    const char *url = env->GetStringUTFChars(url_, 0);
+    const char *url = env->GetStringUTFChars(url_, nullptr);
     path = new char[strlen(url) + 1];
     strcpy(path, url);
     //启动子线程
-    pthread_create(&pid, 0, connect, 0);
+    pthread_create(&pid, nullptr, connect, nullptr);
 
     env->ReleaseStringUTFChars(url_, url);
 
@@ -102,7 +102,7 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeInit(JNIEnv *env, jobject thiz) {
     helper = new JavaCallHelper(javaVM, env, thiz);
-    pthread_mutex_init(&mutex, 0);
+    pthread_mutex_init(&mutex, nullptr);
 }
 
 extern "C"
@@ -112,7 +112,7 @@ Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_disConnect(JNIEnv *env,
     if (rtmp) {
         RTMP_Close(rtmp);
         RTMP_Free(rtmp);
-        rtmp = 0;
+        rtmp = nullptr;
     }
 
     if (videoChannel) {
@@ -157,7 +157,7 @@ Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendVideo(JNIEnv 
 
     if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendVideo");
 
-    jbyte *data = env->GetByteArrayElements(buffer, 0);
+    jbyte *data = env->GetByteArrayElements(buffer, nullptr);
     if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("jbyte *data = env->GetByteArrayElements(buffer, 0);");
     pthread_mutex_lock(&mutex);
     if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("pthread_mutex_lock(&mutex);");
@@ -166,7 +166,7 @@ Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendVideo(JNIEnv 
     if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("videoChannel->encode(reinterpret_cast<uint8_t *>(data));");
     pthread_mutex_unlock(&mutex);
     if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("pthread_mutex_unlock(&mutex);");
-    env->ReleaseByteArrayElements(buffer, data, 0);
+    env->ReleaseByteArrayElements(buffer, data, JNI_COMMIT);
     if(LOG_ANDYTHEBREAKER_IMAGE_DONT_GO_OUT)LOGI("env->ReleaseByteArrayElements(buffer, data, 0);");
 }
 
@@ -185,7 +185,7 @@ JNIEXPORT void JNICALL
 Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_releaseAudioEnc(JNIEnv *env, jobject thiz) {
     if (audioChannel) {
         delete (audioChannel);
-        audioChannel = 0;
+        audioChannel = nullptr;
     }
 }
 
@@ -193,7 +193,7 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_me_andythebreaker_camerax_1color_1detect_RtmpClient_nativeSendAudio(JNIEnv *env, jobject thiz,
                                                                  jbyteArray buffer, jint len) {
-    jbyte *data = env->GetByteArrayElements(buffer, 0);
+    jbyte *data = env->GetByteArrayElements(buffer, nullptr);
     pthread_mutex_lock(&mutex);
     audioChannel->encode(reinterpret_cast<int32_t *>(data), len);
     pthread_mutex_unlock(&mutex);

@@ -25,13 +25,13 @@ public:
     void resetPts() { i_pts = 0; };
 private:
     x264_t *codec = 0;
-    int ySize;
-    int uSize;
+    int ySize{};
+    int uSize{};
     int64_t i_pts = 0;
-    Callback callback;
+    Callback callback{};
 
-    int width;
-    int height;
+    int width{};
+    int height{};
 
     void sendVideoConfig(uint8_t *sps, uint8_t *pps, int spslen, int ppslen);
 
