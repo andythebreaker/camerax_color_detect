@@ -132,6 +132,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/capture" />
+            <Button
+                android:text="lightOFF"
+                android:onClick="torchSW"
+                android:id="@+id/torchSW"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:contentDescription="torch" />
         </LinearLayout>
 
         <TableLayout

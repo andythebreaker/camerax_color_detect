@@ -36,10 +36,13 @@ import android.graphics.Color;
 import android.graphics.ImageFormat;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -62,6 +65,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -84,7 +88,7 @@ import me.andythebreaker.camerax_color_detect.RtmpClient;
 
 public class MainActivity extends AppCompatActivity {
 
-
+private Camera camera=null;
     public long lastTimeStamp;
     private final Executor executor = Executors.newSingleThreadExecutor();
     private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.RECORD_AUDIO", "android.permission.INTERNET", "android.permission.ACCESS_WIFI_STATE", "android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"};
@@ -390,8 +394,8 @@ public class MainActivity extends AppCompatActivity {
 
         preview.setSurfaceProvider(mPreviewView.getSurfaceProvider());
 
-        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview, imageAnalysis, imageCapture);
-
+        /*Camera*/ camera = cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview, imageAnalysis, imageCapture);
+        camera.getCameraControl().enableTorch(true);//important phone NEED torch !! else will error ； https://stackoverflow.com/questions/67472332/flash-mode-torch-in-camerax
         int camphy_bottom = Objects.requireNonNull(preview.getResolutionInfo()).getCropRect().bottom;
         int camphy_top = preview.getResolutionInfo().getCropRect().top;
         int camphy_left = preview.getResolutionInfo().getCropRect().left;
@@ -642,6 +646,81 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return "phrase color text error (@ switch)";
         }
+    }
+
+    public void torchSW(View view) {
+        Button buttontmp = (Button) findViewById(R.id.torchSW);
+
+        if(buttontmp.getText()== "lightON"){
+            buttontmp.setText("lightOFF");
+            camera.getCameraControl().enableTorch(true);
+        }else{
+            buttontmp.setText("lightON");
+            camera.getCameraControl().enableTorch(false);
+        }
+    }private Bitmap mBitmap;
+    private Canvas mCanvas;
+    private Rect mBounds;
+
+    public void initIfNeeded() {
+        if(mBitmap == null) {
+            mBitmap = Bitmap.createBitmap(1,1, Bitmap.Config.ARGB_8888);
+            mCanvas = new Canvas(mBitmap);
+            mBounds = new Rect();
+        }
+    }
+
+    public int getBackgroundColor_(View view) {
+        // The actual color, not the id.
+        int color = Color.BLACK;
+
+        if(view.getBackground() instanceof ColorDrawable) {
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                initIfNeeded();
+
+                // If the ColorDrawable makes use of its bounds in the draw method,
+                // we may not be able to get the color we want. This is not the usual
+                // case before Ice Cream Sandwich (4.0.1 r1).
+                // Yet, we change the bounds temporarily, just to be sure that we are
+                // successful.
+                ColorDrawable colorDrawable = (ColorDrawable)view.getBackground();
+
+                mBounds.set(colorDrawable.getBounds()); // Save the original bounds.
+                colorDrawable.setBounds(0, 0, 1, 1); // Change the bounds.
+
+                colorDrawable.draw(mCanvas);
+                color = mBitmap.getPixel(0, 0);
+
+                colorDrawable.setBounds(mBounds); // Restore the original bounds.
+            }
+            else {
+                color = ((ColorDrawable)view.getBackground()).getColor();
+            }
+        }
+
+        return color;
+    }
+    public static int getBackgroundColor(View view) {
+        Drawable drawable = view.getBackground();
+        if (drawable instanceof ColorDrawable) {
+            ColorDrawable colorDrawable = (ColorDrawable) drawable;
+            if (Build.VERSION.SDK_INT >= 11) {
+                return colorDrawable.getColor();
+            }
+            try {
+                Field field = colorDrawable.getClass().getDeclaredField("mState");
+                field.setAccessible(true);
+                Object object = field.get(colorDrawable);
+                field = object.getClass().getDeclaredField("mUseColor");
+                field.setAccessible(true);
+                return field.getInt(object);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 }
 
